@@ -1,27 +1,18 @@
 server:
   port: 8080
 spring:
+  data:
+    redis:
+      host: localhost
+      port: 6379
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
     show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-        use_sql_comments: true
-        highlight_sql: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/concurrency-issue
     username: root
     password: root
-
-logging:
-  level:
-    org:
-      hibernate:
-        SQL: DEBUG
-        type:
-          descriptor:
-            sql:
-              BasicBinder: TRACE
+    hikari:
+      maximum-pool-size: 40  # 추가
